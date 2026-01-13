@@ -102,6 +102,15 @@
       from, to { border-color: transparent }
       50% { border-color: #0d6efd; }
     }
+
+    @media (max-width: 768px) {
+      .typewriter-text {
+        white-space: normal; /* Allow text to wrap */
+        animation: none;     /* Disable typing animation */
+        width: auto;         /* Reset width so it's visible */
+        border-right: none;  /* Remove the cursor */
+      }
+    }
   </style>
 
 </head>
