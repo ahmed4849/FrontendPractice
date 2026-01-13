@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Animated Gradient & Canvas Background for Hero */
+    .hero {
+      position: relative; /* Needed for absolute positioning of canvas */
+      background: linear-gradient(-45deg, #020024, #090979, #00d4ff, #004e92);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh; /* Full viewport height */
+      overflow: hidden;
+    }
+
+    #particleCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Behind the text */
+    }
+
+    /* Ensure content stays on top of canvas */
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Card Hover Animation */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    }
+
+    /* Glassmorphism Navbar */
+    .navbar {
+      background-color: transparent !important;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background-color: rgba(33, 37, 41, 0.95) !important;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Typewriter Effect */
+    .typewriter-text {
+      overflow: hidden;
+      border-right: .15em solid transparent;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: 0.1em;
+      width: 0;
+      animation: typing 3.5s steps(40, end) forwards, blink-caret .75s step-end 5;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #0d6efd; }
+    }
+  </style>
+
+</head>
+<body>
+
+<!-- Loading Spinner -->
+<div id="loader-wrapper">
+  <div class="spinner">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>
+
+<!-- navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold" href="#">Portfolio</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            <i class="fa-solid fa-user me-1"></i> About
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">
+            <i class="fa-solid fa-code me-1"></i> Skills
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#services">
+            <i class="fa-solid fa-screwdriver-wrench me-1"></i> Services
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#experience">
+            <i class="fa-solid fa-briefcase me-1"></i> Experience
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">
+            <i class="fa-solid fa-diagram-project me-1"></i> Projects
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#certifications">
+            <i class="fa-solid fa-certificate me-1"></i> Certifications
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">
+            <i class="fa-solid fa-envelope me-1"></i> Contact
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="resume.pdf.pdf" download>
+            <i class="fa-solid fa-file-pdf me-1"></i> Resume
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <button class="btn nav-link" id="darkModeToggle" aria-label="Toggle Dark Mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero d-flex align-items-center text-center">
+  <canvas id="particleCanvas"></canvas>
+  <div class="container text-white">
+    <div class="d-inline-block">
+      <h1 class="fw-bold typewriter-text">Hi I am Muhammad Ahmad</h1>
+    </div>
+    <br>
+    <div class="d-inline-block">
+      <p class="lead typewriter-text" style="animation-delay: 3.5s;">Junior Developer | ASP.NET Core & Angular</p>
+    </div>
+    <br>
+    <a href="#projects" class="btn btn-primary mt-3">
+      View My Work
+    </a>
+  </div>
+</header>
+
+<!-- ABOUT  -->
+<section id="about" class="py-5">
+  <div class="container">
+    <h1 class="text-center mb-4 "><strong>About Me</strong></h1>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-8">
+        <p class="text-center">
+         "I am a passionate Junior Developer with hands-on experience
+      building enterprise-style applications using ASP.NET Core Web API
+      and Angular. I focus on clean architecture, authentication, and
+      scalable systems. With a strong foundation in C# and web development, I have
+          developed several projects that showcase my skills in building
+          robust backend APIs and dynamic front-end interfaces. I am
+          eager to contribute to innovative teams and continue growing
+          my expertise in full-stack development".
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- skills -->
+<section id="skills" class="bg-light py-5">
+    <h2 class="text-center mb-4 w-100">Skills</h2>
+
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-md-3">
+        <i class="fa-brands fa-html5 fa-2x text-danger"></i>
+        <p class="mt-2">HTML5</p>
+      </div>
+
+    <div class="col-md-3">
+        <i class="fab fa-sharp fa-solid fa-c fa-2x text-danger"></i>
+        <p class="mt-2">C#</p>
+      </div>
+
+      <div class="col-md-3">
+        <i class="fa-brands fa-css3-alt fa-2x text-primary"></i>
+        <p class="mt-2">CSS3</p>
+      </div>
+
+      <div class="col-md-3">
+        <i class="fa-brands fa-bootstrap fa-2x"></i>
+        <p class="mt-2">Bootstrap</p>
+      </div>
+      
+      <div class="col-md-3">
+        <i class="fa-brands fa-Agentic-Ai fa-2x text-danger"></i>
+        <img src ="https://img.icons8.com/?size=100&id=dL3M6FPblFer&format=png&color=000000" alt="Agentic-Ai Icon" width="30" height="30">
+        <p class="mt-2">Agentic-Ai</p>
+      </div>
+
+    
+      <div class="col-md-3">
+        <i class="fa-brands fa-Ai fa-2x text-danger"></i>
+        <img src="https://img.icons8.com/?size=100&id=BU7Clwq5bV9D&format=png&color=000000" alt="AI Icon" width="30" height="30">
+        <p class="mt-2">Generative-Ai</p>
+      </div>
+
+      <div class="col-md-3">
+        <i class="fa-brands fa-angular fa-2x text-danger"></i>
+        <p class="mt-2">Angular</p>
+      </div>
+
+      <div class="col-md-3">
+        <i class="fa-brands fa-microsoft fa-2x text-primary"></i>
+        <p class="mt-2">ASP.NET Core</p>
+      </div>
+
+      <div class="col-md-3">
+        <i class="fa-solid fa-database fa-2x text-secondary"></i>
+        <p class="mt-2">SQL Server</p>
+      </div>
+
+      <div class="col-md-3">
+        <i class="fa-brands fa-git-alt fa-2x text-danger"></i>
+        <p class="mt-2">Git</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 w-100">Services</h2>
+    <div class="row g-4">
+      
+      <div class="col-md-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="fa-solid fa-server fa-3x text-primary mb-3"></i>
+              <h5 class="card-title">Backend API Development</h5>
+              <p class="text-muted small mt-3"><i class="fa-solid fa-hand-pointer me-1"></i> Hover for details</p>
+            </div>
+            <div class="flip-card-back">
+              <h5 class="card-title text-white mb-3">Backend API Development</h5>
+              <p class="card-text text-white">
+                Building robust and scalable RESTful APIs using ASP.NET Core, ensuring secure and efficient data handling with Clean Architecture.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="fa-solid fa-laptop-code fa-3x text-danger mb-3"></i>
+              <h5 class="card-title">Frontend Development</h5>
+              <p class="text-muted small mt-3"><i class="fa-solid fa-hand-pointer me-1"></i> Hover for details</p>
+            </div>
+            <div class="flip-card-back">
+              <h5 class="card-title text-white mb-3">Frontend Development</h5>
+              <p class="card-text text-white">
+                Creating responsive, interactive, and user-friendly interfaces using Angular, Bootstrap, and modern web technologies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <i class="fa-solid fa-robot fa-3x text-success mb-3"></i>
+              <h5 class="card-title">AI Integration</h5>
+              <p class="text-muted small mt-3"><i class="fa-solid fa-hand-pointer me-1"></i> Hover for details</p>
+            </div>
+            <div class="flip-card-back">
+              <h5 class="card-title text-white mb-3">AI Integration</h5>
+              <p class="card-text text-white">
+                Integrating Generative AI models and RAG pipelines into applications to create intelligent and data-driven solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE & EDUCATION -->
+<section id="experience" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5 w-100">Experience & Education</h2>
+    <div class="row g-5">
+      
+      <!-- Experience -->
+      <div class="col-md-6">
+        <h3 class="mb-4 text-primary"><i class="fa-solid fa-briefcase me-2"></i>Experience</h3>
+        
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Junior / Full Stack Developer</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Encodal | 1 Year (Intern + Full-Time)</h6>
+            <p class="card-text small">
+              Developed RESTful APIs with ASP.NET Core and built responsive frontends using Angular 19. Implemented JWT auth, Clean Architecture, and SQL Server database design.
+            </p>
+          </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Junior Software Developer (Intern)</h5>
+            <h6 class="card-subtitle mb-2 text-muted">NTRC Faisalabad</h6>
+            <p class="card-text small">
+              Gained hands-on experience in software development life cycle and assisted in backend tasks.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="col-md-6">
+        <h3 class="mb-4 text-primary"><i class="fa-solid fa-graduation-cap me-2"></i>Education</h3>
+        
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Bachelor In Computer Science</h5>
+            <h6 class="card-subtitle mb-2 text-muted">GC University Faisalabad | 2022 – 2025</h6>
+            <p class="card-text small">
+              Focused on Software Engineering, Data Structures, and Web Development.
+            </p>
+          </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Intermediate</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Kips College Faisalabad | 2019 – 2021</h6>
+            <p class="card-text small">
+              Computer Science fundamentals.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- project -->
+<section id="projects" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4 w-100">Projects</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-users me-2"></i>
+              Employee Management System
+            </h5>
+            <p class="card-text">
+              ASP.NET Core Web API with JWT Authentication,
+              Clean Architecture, EF Core, and Role-based Authorization.
+            </p>
+            <a href="https://github.com/ahmed4849" class="btn btn-outline-primary btn-sm">
+              <i class="fa-brands fa-github me-1"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-chart-line me-2"></i>
+              Angular Dashboard
+            </h5>
+            <p class="card-text">
+              Role-based admin dashboard with charts,
+              authentication guards, and API integration.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm">
+              Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-laptop-code me-2"></i>
+              Portfolio Website
+            </h5>
+            <p class="card-text">
+              Responsive portfolio built using
+              HTML, CSS, Bootstrap, and Font Awesome.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm">
+              View
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-robot me-2"></i>
+              AI-Driven RAG Pipeline
+            </h5>
+            <p class="card-text">
+              <strong>n8n | Pinecone | Google Gemini</strong><br>
+              Automated pipeline for chatting with custom 2.3MB+ documents using vector embeddings and semantic search.
+            </p>
+            <ul class="small text-muted">
+              <li>Implemented recursive text splitting for context.</li>
+              <li>Automated error alerting via Gmail API.</li>
+            </ul>
+            <a href="https://github.com/ahmed4849" class="btn btn-outline-primary btn-sm mt-2">
+              <i class="fa-brands fa-github me-1"></i> View Workflow
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-book me-2"></i>
+              BookStore API
+            </h5>
+            <p class="card-text">
+              <strong>ASP.NET Core | EF Core | Swagger</strong><br>
+              RESTful API for managing books with structured controllers, filters, and clean architecture.
+            </p>
+            <ul class="small text-muted">
+              <li>Implemented CRUD operations and custom filters (Auth, Logging, Exceptions).</li>
+              <li>Configured Swagger/OpenAPI with API key authentication.</li>
+            </ul>
+            <a href="https://github.com/ahmed4849" class="btn btn-outline-primary btn-sm mt-2">
+              <i class="fa-brands fa-github me-1"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-cart-shopping me-2"></i>
+              E-commerce Web App
+            </h5>
+            <p class="card-text">
+              <strong>ASP.NET Core | EF Core | JWT</strong><br>
+              Fully functional E-commerce backend with secure authentication and order management.
+            </p>
+            <ul class="small text-muted">
+              <li>Implemented JWT auth & role-based authorization.</li>
+              <li>Designed relational DB for products, users, and orders.</li>
+            </ul>
+            <a href="https://github.com/ahmed4849" class="btn btn-outline-primary btn-sm mt-2">
+              <i class="fa-brands fa-github me-1"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-globe me-2"></i>
+              Country-Api
+            </h5>
+            <p class="card-text">
+              <strong>ASP.NET Core | EF Core | SQL Server</strong><br>
+              Backend API to manage country data and handle file uploads securely in wwwroot.
+            </p>
+            <ul class="small text-muted">
+              <li>Implemented CRUD & file upload functionality.</li>
+              <li>Created DTOs and AutoMapper profiles.</li>
+              <li>Documented APIs using Swagger.</li>
+            </ul>
+            <a href="https://github.com/ahmed4849" class="btn btn-outline-primary btn-sm mt-2">
+              <i class="fa-brands fa-github me-1"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="fa-solid fa-tags me-2"></i>
+              XPrice Comparison
+            </h5>
+            <p class="card-text">
+              <strong>Angular 19 | TypeScript</strong><br>
+              Multi-store product price comparison tool with interactive interface.
+            </p>
+            <ul class="small text-muted">
+              <li>Compare prices across multiple stores.</li>
+              <li>Responsive design & dynamic data handling.</li>
+            </ul>
+            <a href="#" class="btn btn-outline-primary btn-sm mt-2">
+              <i class="fa-brands fa-github me-1"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="text-center mb-4">Certifications</h2>
+    
+    <div class="row g-4 justify-content-center">
+      
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-robot fa-3x text-info mb-3"></i>
+            <h5 class="card-title">Introduction to Generative AI</h5>
+            <p class="card-text text-muted">Simplilearn</p>
+            <p class="card-text small">
+              Completed a certified course on Generative AI fundamentals, covering LLM basics, use cases, and responsible AI concepts.
+            </p>
+            <a href="https://simpli-web.app.link/e/OltZSisWkZb" class="btn btn-outline-primary btn-sm mt-2">View Certificate</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-lightbulb fa-3x text-warning mb-3"></i>
+            <h5 class="card-title">Startup School: Prompt to Prototype</h5>
+            <p class="card-text text-muted">Startup School</p>
+            <p class="card-text small">
+              Learned to turn ideas into working prototypes using practical AI tools and prompt engineering. Gained skills in idea validation and rapid prototyping.
+            </p>
+            <a href="#" class="btn btn-outline-primary btn-sm mt-2">View Certificate</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-brain fa-3x text-primary mb-3"></i>
+            <h5 class="card-title">Introduction to AI</h5>
+            <p class="card-text text-muted">365 DataScience</p>
+            <p class="card-text small">
+              Gained a solid understanding of AI concepts, machine learning, and data-driven decision making. Explored narrow vs general AI and business applications.
+            </p>
+            <a href="https://learn.365datascience.com/c/e51b3f6dd4/" class="btn btn-outline-primary btn-sm mt-2">View Certificate</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <i class="fa-solid fa-network-wired fa-3x text-success mb-3"></i>
+            <h5 class="card-title">Introduction to AI Agents</h5>
+            <p class="card-text text-muted">365 DataScience</p>
+            <p class="card-text small">
+              Learned about intelligent agents, agentic behavior, and decision-making systems. Explored agent-based AI applications using n8n.
+            </p>
+            <a href="https://learn.365datascience.com/c/c42756824a/" class="btn btn-outline-primary btn-sm mt-2">View Certificate</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center">
+            <i class="fa-brands fa-google fa-3x text-danger mb-3"></i>
+            <h5 class="card-title">Generative AI Studio</h5>
+            <p class="card-text text-muted">Simplilearn & Google</p>
+            <p class="card-text small">
+              Certified in Generative AI Studio, focused on generative AI tools, prompt engineering, and AI-driven content creation.
+            </p>
+            <a href="https://simpli-web.app.link/e/QvnNInAWkZb" class="btn btn-outline-primary btn-sm mt-2">View Certificate</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-dark text-white py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Contact Me</h2>
+    <div class="row g-5">
+      
+      <!-- Contact Info -->
+      <div class="col-md-6">
+        <h4 class="mb-3">Get in Touch</h4>
+        <p class="text-white-50 mb-4">
+          I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+        </p>
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-envelope fa-lg me-3 text-primary"></i>
+            <a href="mailto:ahmed.asif4849@gmail.com" class="text-decoration-none text-white">ahmed.asif4849@gmail.com</a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-phone fa-lg me-3 text-primary"></i>
+            <span>+923147809083</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="fa-brands fa-github fa-lg me-3 text-primary"></i>
+            <a href="https://github.com/ahmed4849" class="text-decoration-none text-white">GitHub Profile</a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="fa-brands fa-linkedin fa-lg me-3 text-primary"></i>
+            <a href="https://www.linkedin.com/in/muhammad-ahmed-123456789/" class="text-decoration-none text-white">LinkedIn Profile</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-md-6">
+        <form id="contactForm" action="mailto:ahmed.asif4849@gmail.com" method="post" enctype="text/plain">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+        <div id="successMessage" class="alert alert-success mt-3 d-none" role="alert">
+          <i class="fa-solid fa-check-circle me-2"></i>
+          Message prepared! Please check your email client to send.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="bg-black text-white text-center py-4">
+  <div class="container">
+    <div class="mb-3">
+      <a href="https://github.com/ahmed4849" class="text-white me-3 text-decoration-none"><i class="fa-brands fa-github fa-lg"></i></a>
+      <a href="https://www.linkedin.com/in/muhammad-ahmed-123456789/" class="text-white me-3 text-decoration-none"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+      <a href="mailto:ahmed.asif4849@gmail.com" class="text-white text-decoration-none"><i class="fa-solid fa-envelope fa-lg"></i></a>
+    </div>
+    <small>&copy; 2026 Muhammad Ahmad. All rights reserved.</small>
+  </div>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" class="btn btn-primary" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- Particle Network Animation Script -->
+<script>
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particlesArray;
+  
+  // Mouse interaction
+  let mouse = {
+    x: null,
+    y: null,
+    radius: 100
+  };
+
+  window.addEventListener('mousemove', function(event) {
+    mouse.x = event.x;
+    mouse.y = event.y;
+  });
+
+  // Create Particle
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.directionX = (Math.random() * 1) - 0.5; // Speed X
+      this.directionY = (Math.random() * 1) - 0.5; // Speed Y
+      this.size = (Math.random() * 2) + 1;
+    }
+    // Update position
+    update() {
+      if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+      if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+      this.x += this.directionX;
+      this.y += this.directionY;
+
+      // Mouse interactivity
+      if (mouse.x != null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx*dx + dy*dy);
+        
+        if (distance < mouse.radius) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (mouse.radius - distance) / mouse.radius;
+          const directionX = forceDirectionX * force * 3;
+          const directionY = forceDirectionY * force * 3;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        }
+      }
+    }
+    // Draw particle
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    particlesArray = [];
+    const numberOfParticles = (canvas.height * canvas.width) / 9000; // Density
+    for (let i = 0; i < numberOfParticles; i++) {
+      particlesArray.push(new Particle());
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update();
+      particlesArray[i].draw();
+      
+      // Draw connections
+      for (let j = i; j < particlesArray.length; j++) {
+        const dx = particlesArray[i].x - particlesArray[j].x;
+        const dy = particlesArray[i].y - particlesArray[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 100) { // Connection distance
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/100})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+          ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+          ctx.stroke();
+        }
+      }
+      
+      // Connect to mouse
+      if (mouse.x != null) {
+        let dx = particlesArray[i].x - mouse.x;
+        let dy = particlesArray[i].y - mouse.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 150) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance/150})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    init();
+  });
+  
+  // Handle mouse leaving window
+  window.addEventListener('mouseout', function() {
+    mouse.x = undefined;
+    mouse.y = undefined;
+  });
+
+  init();
+  animate();
+</script>
+
+<script>
+  // Dark Mode Logic
+  const toggleBtn = document.getElementById('darkModeToggle');
+  const themeIcon = toggleBtn.querySelector('i');
+  
+  // Check saved preference
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeIcon.classList.replace('fa-moon', 'fa-sun');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    // Update icon and save preference
+    if (isDark) {
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      themeIcon.classList.replace('fa-sun', 'fa-moon');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+
+  // Contact Form Success Message
+  const form = document.getElementById('contactForm');
+  const msg = document.getElementById('successMessage');
+
+  form.addEventListener('submit', () => {
+    msg.classList.remove('d-none');
+    // The form will still submit via mailto
+  });
+
+  // Scroll to Top Logic
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener('scroll', () => {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      scrollTopBtn.style.display = "flex";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  });
+
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Navbar Scroll Effect
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // Loading Spinner Logic
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-wrapper');
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      loader.style.visibility = 'hidden';
+    }, 800);
+  });
+</script>
+
+</body>
+</html>
