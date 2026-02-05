@@ -266,73 +266,83 @@
     <div class="container">
       <div class="row text-center g-4 justify-content-center">
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Expert in semantic HTML5, accessibility, and modern layouts.">
             <i class="fa-brands fa-html5 fa-2x text-danger"></i>
             <p class="mt-2">HTML5</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Proficient in C# for backend logic, LINQ, and asynchronous programming.">
             <i class="fab fa-sharp fa-solid fa-c fa-2x text-danger"></i>
             <p class="mt-2">C#</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Skilled in CSS3, Flexbox, Grid, and responsive design.">
             <i class="fa-brands fa-css3-alt fa-2x text-primary"></i>
             <p class="mt-2">CSS3</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Experienced in building mobile-first responsive sites with Bootstrap 5.">
             <i class="fa-brands fa-bootstrap fa-2x"></i>
             <p class="mt-2">Bootstrap</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Experienced in building and integrating Agentic AI workflows using n8n and LangGraph.">
             <img src="https://img.icons8.com/?size=100&id=dL3M6FPblFer&format=png&color=000000" alt="Agentic-Ai Icon"
-              width="40" height="40">
+              width="40" height="40" loading="lazy">
             <p class="mt-2">Agentic-Ai</p>
           </div>
         </div>
 
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Specialized in LLM integration, prompt engineering, and RAG pipelines.">
             <img src="https://img.icons8.com/?size=100&id=BU7Clwq5bV9D&format=png&color=000000" alt="AI Icon" width="40"
-              height="40">
+              height="40" loading="lazy">
             <p class="mt-2">Generative-Ai</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Proficient in Angular 19, RxJS, state management, and component architecture.">
             <i class="fa-brands fa-angular fa-2x text-danger"></i>
             <p class="mt-2">Angular</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Specialized in building RESTful APIs, JWT Auth, and Clean Architecture with ASP.NET Core.">
             <i class="fa-brands fa-microsoft fa-2x text-primary"></i>
             <p class="mt-2">ASP.NET Core</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Expert in database design, Stored Procedures, and query optimization in SQL Server.">
             <i class="fa-solid fa-database fa-2x text-secondary"></i>
             <p class="mt-2">SQL Server</p>
           </div>
         </div>
 
         <div class="col-md-3">
-          <div class="skill-card">
+          <div class="skill-card" data-bs-toggle="tooltip"
+            title="Proficient in version control, branching strategies, and collaborative development with Git.">
             <i class="fa-brands fa-git-alt fa-2x text-danger"></i>
             <p class="mt-2">Git</p>
           </div>
@@ -1015,6 +1025,12 @@
         loader.style.opacity = '0';
         loader.style.visibility = 'hidden';
       }, 800);
+    });
+
+    // Initialize Bootstrap Tooltips
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
     });
   </script>
 
