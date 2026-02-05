@@ -6,7 +6,8 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding-top: 0; /* Handled by hero min-height */
+  padding-top: 0;
+  /* Handled by hero min-height */
   scroll-behavior: smooth;
   background-color: #ffffff;
   color: #212529;
@@ -18,7 +19,8 @@ a {
 }
 
 html {
-  scroll-padding-top: 80px; /* Prevents fixed navbar from covering section titles */
+  scroll-padding-top: 80px;
+  /* Prevents fixed navbar from covering section titles */
 }
 
 .navbar {
@@ -53,6 +55,7 @@ html {
   display: flex;
   align-items: center;
 }
+
 .hero h1 {
   font-size: 3rem;
 }
@@ -89,15 +92,20 @@ section h2::after {
   font-size: 1.3rem;
 }
 
-#skills .col-md-3 {
+#skills .skill-card {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 25px 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-#skills .col-md-3:hover {
+#skills .skill-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
@@ -111,8 +119,8 @@ section h2::after {
 }
 
 
-#skills .col-md-3:hover i,
-#skills .col-md-3:hover img {
+#skills .skill-card:hover i,
+#skills .skill-card:hover img {
   color: #0d6efd !important;
   animation: rubberBand 1s;
 }
@@ -148,7 +156,8 @@ section h2::after {
 }
 
 .card .btn {
-  margin-top: auto; /* Pushes button to the bottom of the card */
+  margin-top: auto;
+  /* Pushes button to the bottom of the card */
 }
 
 /* Project Card Hover Effects */
@@ -198,6 +207,7 @@ footer {
 footer a {
   transition: color 0.3s ease;
 }
+
 footer a:hover {
   color: #0d6efd !important;
 }
@@ -234,7 +244,7 @@ body.dark-mode .border-primary {
   border-color: #6ea8fe !important;
 }
 
-body.dark-mode #skills .col-md-3 {
+body.dark-mode #skills .skill-card {
   background-color: #2c3034;
   color: #f8f9fa;
 }
@@ -243,7 +253,8 @@ body.dark-mode #skills .col-md-3 {
 .flip-card {
   background-color: transparent;
   perspective: 1000px;
-  height: 320px; /* Fixed height for consistent flip */
+  height: 320px;
+  /* Fixed height for consistent flip */
 }
 
 .flip-card-inner {
@@ -259,14 +270,15 @@ body.dark-mode #skills .col-md-3 {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -310,7 +322,7 @@ body.dark-mode .flip-card-front {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   font-size: 1.2rem;
   align-items: center;
   justify-content: center;
@@ -349,11 +361,29 @@ body.dark-mode #loader-wrapper {
   animation: pulse 1.4s infinite ease-in-out both;
 }
 
-.dot:nth-child(1) { animation-delay: -0.32s; background-color: #0d6efd; }
-.dot:nth-child(2) { animation-delay: -0.16s; background-color: #dc3545; }
-.dot:nth-child(3) { background-color: #ffc107; }
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+  background-color: #0d6efd;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+  background-color: #dc3545;
+}
+
+.dot:nth-child(3) {
+  background-color: #ffc107;
+}
 
 @keyframes pulse {
-  0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1); }
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
 }
