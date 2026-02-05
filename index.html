@@ -22,6 +22,9 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <style>
     /* Animated Gradient & Canvas Background for Hero */
     .hero {
@@ -126,13 +129,36 @@
 
     @media (max-width: 768px) {
       .hero h1.typewriter-text {
-        font-size: 5.5vw;
-        /* Scales text to fit width */
+        font-size: 6vw;
       }
 
       .hero p.typewriter-text {
-        font-size: 3.5vw;
-        /* Scales text to fit width */
+        font-size: 4vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1.typewriter-text {
+        font-size: 7.5vw;
+        letter-spacing: 0.05em;
+      }
+
+      .hero p.typewriter-text {
+        font-size: 4.5vw;
+        white-space: normal;
+        /* Allow sub-text to wrap if needed on tiny screens */
+        width: auto;
+        animation: typing-mobile 3s steps(30, end) forwards;
+      }
+    }
+
+    @keyframes typing-mobile {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
       }
     }
   </style>
@@ -239,7 +265,7 @@
   </header>
 
   <!-- ABOUT  -->
-  <section id="about" class="py-5">
+  <section id="about" class="py-5" data-aos="fade-up">
     <div class="container">
       <h2 class="text-center mb-4 w-100"><strong>About Me</strong></h2>
       <div class="row justify-content-center mt-4">
@@ -260,7 +286,7 @@
   </section>
 
   <!-- skills -->
-  <section id="skills" class="bg-light py-5">
+  <section id="skills" class="bg-light py-5" data-aos="fade-up">
     <h2 class="text-center mb-4 w-100">Skills</h2>
 
     <div class="container">
@@ -352,7 +378,7 @@
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="py-5">
+  <section id="services" class="py-5" data-aos="fade-up">
     <div class="container">
       <h2 class="text-center mb-5 w-100">Services</h2>
       <div class="row g-4">
@@ -419,7 +445,7 @@
   </section>
 
   <!-- EXPERIENCE & EDUCATION -->
-  <section id="experience" class="py-5">
+  <section id="experience" class="py-5" data-aos="fade-up">
     <div class="container">
       <h2 class="text-center mb-5 w-100">Experience & Education</h2>
       <div class="row g-5">
@@ -481,7 +507,7 @@
   </section>
 
   <!-- project -->
-  <section id="projects" class="py-5">
+  <section id="projects" class="py-5" data-aos="fade-up">
     <div class="container">
       <h2 class="text-center mb-4 w-100">Projects</h2>
 
@@ -651,12 +677,38 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fa-solid fa-cube me-2"></i>
+                3D Interactive Portfolio
+              </h5>
+              <p class="card-text">
+                <strong>Angular 19 | Three.js | Tailwind</strong><br>
+                Immersive 3D personal website featuring interactive models, smooth transitions, and premium glassmorphic
+                UI.
+              </p>
+              <ul class="small text-muted">
+                <li>Integrated Three.js for 3D rendering & animations.</li>
+                <li>Responsive mobile-first design with Tailwind CSS.</li>
+                <li>Dynamic data fetching and component architecture.</li>
+              </ul>
+              <a href="https://github.com/ahmed4849" class="btn btn-outline-primary btn-sm">
+                <i class="fa-brands fa-github me-1"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+
+
   <!-- CERTIFICATIONS -->
-  <section id="certifications" class="bg-light py-5">
+  <section id="certifications" class="bg-light py-5" data-aos="fade-up">
     <div class="container text-center">
       <h2 class="text-center mb-4">Certifications</h2>
 
@@ -689,7 +741,7 @@
                 Learned to turn ideas into working prototypes using practical AI tools and prompt engineering. Gained
                 skills in idea validation and rapid prototyping.
               </p>
-              <a href="#" class="btn btn-outline-primary btn-sm mt-2">View Certificate</a>
+              <a href="#" class="btn btn-outline-primary btn-sm">View Certificate</a>
             </div>
           </div>
         </div>
@@ -747,7 +799,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="bg-dark text-white py-5">
+  <section id="contact" class="bg-dark text-white py-5" data-aos="fade-up">
     <div class="container">
       <h2 class="text-center mb-5 w-100">Contact Me</h2>
       <div class="row g-5 justify-content-center">
@@ -1031,6 +1083,26 @@
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  </script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+  </script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
     });
   </script>
 

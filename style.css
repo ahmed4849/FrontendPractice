@@ -89,7 +89,14 @@ section h2::after {
   max-width: 800px;
   margin: auto;
   line-height: 1.8;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  #about p {
+    font-size: 1.1rem;
+    padding: 0 15px;
+  }
 }
 
 #skills .skill-card {
@@ -184,6 +191,8 @@ section h2::after {
   background-color: #111;
 }
 
+
+
 #contact p {
   margin: 10px 0;
   font-size: 1rem;
@@ -267,7 +276,13 @@ body.dark-mode #skills .skill-card {
   background-color: transparent;
   perspective: 1000px;
   height: 320px;
-  /* Fixed height for consistent flip */
+}
+
+@media (max-width: 576px) {
+  .flip-card {
+    height: 350px;
+    /* More height for stacked content on mobile */
+  }
 }
 
 .flip-card-inner {
@@ -322,6 +337,10 @@ body.dark-mode .flip-card-front {
 
   .hero p {
     font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
   }
 }
 
