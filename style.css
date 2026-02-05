@@ -134,6 +134,9 @@ section h2::after {
   border: none;
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .card:hover {
@@ -144,6 +147,7 @@ section h2::after {
 .card-body {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .card-title {
