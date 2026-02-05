@@ -1,14 +1,11 @@
-# Portfolio (no JavaScript)
+# Portfolio (JavaScript & Bootstrap)
 
-This is a minimal, responsive portfolio page built without JavaScript.
+This is a modern, responsive portfolio page built with HTML, CSS, Bootstrap, and JavaScript.
 
-How to use
+## Features
 
-- Open `index.html` in your browser.
-- Edit `index.html` to replace content (name, projects, contact).
-- Edit `style.css` to tweak colors, spacing, and layout.
-
-Notes
-
-- The page uses semantic HTML and responsive CSS only.
-- Accessible patterns included: skip link, meaningful headings, and readable color contrast.
+- **Responsive Design**: Fully responsive layout using Bootstrap.
+- **Dark Mode**: Toggleable dark mode with persistent settings.
+- **Interactive Animations**: Particle background and scroll-triggered transitions.
+- **SEO Optimized**: Semantic HTML and meta tags for better visibility.
+- **Accessible**: Meaningful headings and keyboard-friendly navigation.
